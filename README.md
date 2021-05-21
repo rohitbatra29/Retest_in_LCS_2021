@@ -7,3 +7,5 @@ This page is dedicated to the code used in the statistical analysis in the paper
 1. Lavaan code for retest as an observed covariate at the structural level
 2. Dynr code for retest as a latent covariate at the structural level
 3. Mplus code for retest as an observed covariate at the measurement level
+
+*Data available upon request.
