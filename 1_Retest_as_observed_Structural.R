@@ -914,29 +914,3 @@ FR20 ~~ c*FR20'
 fit_lds4 <- sem(model = lds_mod4, data = new_d, missing = "fiml")
 
 summary(fit_lds4, standardized = TRUE, fit.measures = TRUE)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
