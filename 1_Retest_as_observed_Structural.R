@@ -8,7 +8,6 @@
 
 library(lavaan)
 
-
 # Data Setup --------------------------------------------------------------
 
 # The data is available upon request. This code can be easily edited for any other data. 
