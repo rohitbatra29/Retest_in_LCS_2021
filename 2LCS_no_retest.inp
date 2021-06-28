@@ -1,0 +1,155 @@
+TITLE: 2LCS with residual covariances (no retest);
+  !Strict Invariance assumed
+  !Concept Formation @20 = 1 case only
+
+  DATA:  FILE = file_name_here;
+
+  VARIABLE:  NAMES ARE  put_col_names_for_data;
+
+  ! Variables info: Here the data is in wide format and each measure has its own retest matrix. For example, mr_RE7 to mr_RE20 is the retest columns for the Matrix Reasoning indicator with (0, 1, 1) values for individuals for their 1st, 2nd and 3rd observations for this measure, respectively. 
+
+             MISSING = .;
+             USEVAR = mr6-mr20 bd6-bd20 cf6-cf19 as6-as20
+             !mr_RE7 - mr_RE20 bd_RE7 - bd_RE20 cf_RE7 - cf_RE19 as_RE7 - as_RE20;
+
+  ANALYSIS: TYPE = MISSING H1;
+            ITERATIONS = 8000;
+            !TYPE = MEfrTRUCTURE;
+            COVERAGE = 0;
+            !CONVERGENCE = .001
+            MODEL = NOCOVARIANCES;
+  MODEL:
+      !Fluid Reasoning Latent Variables
+      ly6  BY mr6  (l1); ly6  BY  bd6  (l2); ly6  BY cf6  (l3); ly6  BY as6  (l4) ;
+      ly7  BY mr7  (l1); ly7  BY  bd7  (l2); ly7  BY cf7  (l3); ly7  BY as7  (l4) ;
+      ly8  BY mr8  (l1); ly8  BY  bd8  (l2); ly8  BY cf8  (l3); ly8  BY as8  (l4) ;
+      ly9  BY mr9  (l1); ly9  BY  bd9  (l2); ly9  BY cf9  (l3); ly9  BY as9  (l4) ;
+      ly10 BY mr10 (l1); ly10 BY  bd10 (l2); ly10 BY cf10 (l3); ly10 BY as10 (l4) ;
+      ly11 BY mr11 (l1); ly11 BY  bd11 (l2); ly11 BY cf11 (l3); ly11 BY as11 (l4) ;
+      ly12 BY mr12 (l1); ly12 BY  bd12 (l2); ly12 BY cf12 (l3); ly12 BY as12 (l4) ;
+      ly13 BY mr13 (l1); ly13 BY  bd13 (l2); ly13 BY cf13 (l3); ly13 BY as13 (l4) ;
+      ly14 BY mr14 (l1); ly14 BY  bd14 (l2); ly14 BY cf14 (l3); ly14 BY as14 (l4) ;
+      ly15 BY mr15 (l1); ly15 BY  bd15 (l2); ly15 BY cf15 (l3); ly15 BY as15 (l4) ;
+      ly16 BY mr16 (l1); ly16 BY  bd16 (l2); ly16 BY cf16 (l3); ly16 BY as16 (l4) ;
+      ly17 BY mr17 (l1); ly17 BY  bd17 (l2); ly17 BY cf17 (l3); ly17 BY as17 (l4) ;
+      ly18 BY mr18 (l1); ly18 BY  bd18 (l2); ly18 BY cf18 (l3); ly18 BY as18 (l4) ;
+      ly19 BY mr19 (l1); ly19 BY  bd19 (l2); ly19 BY cf19 (l3); ly19 BY as19 (l4) ;
+      ly20 BY mr20 (l1); ly20 BY  bd20 (l2);                     ly20 BY as20 (l4) ;
+
+      !LDS Specification
+      ly7  ON ly6@1;  ly8  ON ly7@1;  ly9  ON ly8@1;
+      ly10 ON ly9@1;  ly11 ON ly10@1; ly12 ON ly11@1;
+      ly13 ON ly12@1; ly14 ON ly13@1; ly15 ON ly14@1;
+      ly16 ON ly15@1; ly17 ON ly16@1; ly18 ON ly17@1;
+      ly19 ON ly18@1; ly20 ON ly19@1;
+
+      dy7  BY ly7@1;  dy8  BY ly8@1;  dy9  BY ly9@1;
+      dy10 BY ly10@1; dy11 BY ly11@1;	dy12 BY ly12@1;
+      dy13 BY ly13@1; dy14 BY ly14@1; dy15 BY ly15@1;
+      dy16 BY ly16@1; dy17 BY ly17@1; dy18 BY ly18@1;
+      dy19 BY ly19@1; dy20 BY ly20@1;
+
+      !Auto-proportions
+      dy7  ON ly6*-.184  (b_y);
+      dy8  ON ly7*-.184  (b_y);
+      dy9  ON ly8*-.184  (b_y);
+      dy10 ON ly9*-.184  (b_y);
+      dy11 ON ly10*-.184 (b_y);
+      dy12 ON ly11*-.184 (b_y);
+      dy13 ON ly12*-.184 (b_y);
+      dy14 ON ly13*-.184 (b_y);
+      dy15 ON ly14*-.184 (b_y);
+      dy16 ON ly15*-.184 (b_y);
+      dy17 ON ly16*-.184 (b_y);
+      dy18 ON ly17*-.184 (b_y);
+      dy19 ON ly18*-.184 (b_y);
+      dy20 ON ly19*-.184 (b_y);
+
+      !Latent Variables
+      lys BY dy7-dy20@1;
+      ly0 BY ly6@1;
+
+      !Latent Variable Means
+      [ly6-ly20@0] ;
+      [ly0@0 lys*3.72]  ;
+      [dy7-dy20@0] ;
+
+      !Latent Variable Variances/Disturbances
+      ly6-ly20@0;
+      dy7-dy20 (v_dy);
+      ly0*15 lys*.3;
+      ly0 WITH lys*1.95 ;
+
+      !Observed Variables Means
+      [mr6-mr20*12] (t1) ;
+      [bd6-bd20*3] (t2) ;
+      [cf6-cf19*11] (t3) ;
+      [as6-as20*17] (t4) ;
+
+      !Observed Variables Variances
+      mr6-mr20*15 (e1) ;
+      bd6-bd20*100 (e2) ;
+      cf6-cf19*20 (e3) ;
+      as6-as20*8 (e4) ;
+
+      !Residual Covariances:
+  mr6 WITH mr7*2.65 (cov_mr);
+  mr7 WITH mr8*2.65 (cov_mr);
+  mr8 WITH mr9*2.65 (cov_mr);
+  mr9 WITH mr10*2.65 (cov_mr);
+  mr10 WITH mr11*2.65 (cov_mr);
+  mr11 WITH mr12*2.65 (cov_mr);
+  mr12 WITH mr13*2.65 (cov_mr);
+  mr13 WITH mr14*2.65 (cov_mr);
+  mr14 WITH mr15*2.65 (cov_mr);
+  mr15 WITH mr16*2.65 (cov_mr);
+  mr16 WITH mr17*2.65 (cov_mr);
+  mr17 WITH mr18*2.65 (cov_mr);
+  mr18 WITH mr19*2.65 (cov_mr);
+  mr19 WITH mr20*2.65 (cov_mr);
+
+  bd6 WITH bd7*25 (cov_bd);
+  bd7 WITH bd8*25 (cov_bd);
+  bd8 WITH bd9*25 (cov_bd);
+  bd9 WITH bd10*25 (cov_bd);
+  bd10 WITH bd11*25 (cov_bd);
+  bd11 WITH bd12*25 (cov_bd);
+  bd12 WITH bd13*25 (cov_bd);
+  bd13 WITH bd14*25 (cov_bd);
+  bd14 WITH bd15*25 (cov_bd);
+  bd15 WITH bd16*25 (cov_bd);
+  bd16 WITH bd17*25 (cov_bd);
+  bd17 WITH bd18*25 (cov_bd);
+  bd18 WITH bd19*25 (cov_bd);
+  bd19 WITH bd20*25 (cov_bd);
+
+  cf6 WITH cf7*.2 (cov_cf);
+  cf7 WITH cf8*.2 (cov_cf);
+  cf8 WITH cf9*.2 (cov_cf);
+  cf9 WITH cf10*.2 (cov_cf);
+  cf10 WITH cf11*.2 (cov_cf);
+  cf11 WITH cf12*.2 (cov_cf);
+  cf12 WITH cf13*.2 (cov_cf);
+  cf13 WITH cf14*.2 (cov_cf);
+  cf14 WITH cf15*.2 (cov_cf);
+  cf15 WITH cf16*.2 (cov_cf);
+  cf16 WITH cf17*.2 (cov_cf);
+  cf17 WITH cf18*.2 (cov_cf);
+  cf18 WITH cf19*.2 (cov_cf);
+
+  as6 WITH as7*2.75 (cov_as);
+  as7 WITH as8*2.75 (cov_as);
+  as8 WITH as9*2.75 (cov_as);
+  as9 WITH as10*2.75 (cov_as);
+  as10 WITH as11*2.75 (cov_as);
+  as11 WITH as12*2.75 (cov_as);
+  as12 WITH as13*2.75 (cov_as);
+  as13 WITH as14*2.75 (cov_as);
+  as14 WITH as15*2.75 (cov_as);
+  as15 WITH as16*2.75 (cov_as);
+  as16 WITH as17*2.75 (cov_as);
+  as17 WITH as18*2.75 (cov_as);
+  as18 WITH as19*2.75 (cov_as);
+  as19 WITH as20*2.75 (cov_as);
+
+  OUTPUT: TECH1 TECH4; !SAMPSTAT STANDARDIZED 
