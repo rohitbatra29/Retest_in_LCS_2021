@@ -7,8 +7,6 @@
 # Structural Equation Modeling
 
 library(lavaan)
-library(ggplot2)
-library(gridExtra)
 
 
 # Data Setup --------------------------------------------------------------
