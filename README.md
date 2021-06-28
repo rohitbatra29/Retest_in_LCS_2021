@@ -15,8 +15,12 @@ This page is dedicated to the code used in the statistical analysis in the paper
 
 3. Mplus code for retest as an observed covariate at the measurement level
 
-    Files: 3.1_2LCS_no_retest.inp
-           3.2_2CS_1gamma.inp
-           3.3_2LCS_multi_gamma.inp
+    Files: 
+     
+     3.1_2LCS_no_retest.inp
+    
+     3.2_2CS_1gamma.inp
+     
+     3.3_2LCS_multi_gamma.inp
 
 *Data available upon request.
