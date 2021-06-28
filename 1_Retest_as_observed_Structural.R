@@ -2,7 +2,7 @@
 # R code for fitting using lavaan package
 
 
-# Batra, R., Bunge, S. A., & Ferrer, E. (2021, under review). Modeling Retest Effects in 
+# Batra, R., Bunge, S. A., & Ferrer, E. (2021, in press). Modeling Retest Effects in 
 # Developmental Processes Using Latent Change Score Models. 
 # Structural Equation Modeling
 
