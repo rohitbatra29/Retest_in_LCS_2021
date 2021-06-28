@@ -10,6 +10,9 @@ This page is dedicated to the code used in the statistical analysis in the paper
     File: 1_Retest_as_observed_Structural.R
 
 2. Dynr code for retest as a latent covariate at the structural level
+
+    File: 2_Retest_as_latent_Structural.R
+
 3. Mplus code for retest as an observed covariate at the measurement level
 
 *Data available upon request.
