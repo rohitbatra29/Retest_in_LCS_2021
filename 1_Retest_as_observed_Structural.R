@@ -49,10 +49,11 @@ colnames(retest_cov) <- c("R6", "R7", "R8", "R9", "R10", "R11", "R12", "R13", "R
 
 new_d <- cbind(new_d, retest_cov)
 
+##########################################################################
+# 1LCS without any retest effects ----------------------------------------
+##########################################################################
 
-# 1LCS without any retest effects -----------------------------------------
-
-# To start, we fit a First-Order LCS (1LCS) without any retest effects
+# To start, we fit a First-Order LCS (1LCS) without any retest effects.
 
 lds_mod1 <- '
 # Defining latent variables on observed variables
@@ -264,8 +265,9 @@ fit_lds1 <- sem(model = lds_mod1, data = new_d, missing = "fiml")
 
 summary(fit_lds1, standardized = TRUE, fit.measures = TRUE)
 
-
-# 1LCS with lv ~ retest effect (one gamma) -------------------------------------
+##########################################################################
+# 1LCS with lv ~ retest effect (one gamma) -------------------------------
+##########################################################################
 
 # We fit a 1LCS with an observed retest covariate on the latent true score variables
 # and with only one gamma coefficient across all age bins. 
@@ -480,8 +482,9 @@ fit_lds2 <- sem(model = lds_mod2, data = new_d, missing = "fiml")
 
 summary(fit_lds2, standardized = TRUE, fit.measures = TRUE)
 
-
-# 1LCS with ldv ~ retest effect -------------------------------------------
+##########################################################################
+# 1LCS with ldv ~ retest effect ------------------------------------------
+##########################################################################
 
 # This model is the same as above but now retest is a covariate of the changes
 # with only one gamma coefficient. This model will give exactly the same estimates
@@ -697,7 +700,9 @@ fit_lds3 <- sem(model = lds_mod3, data = new_d, missing = "fiml")
 
 summary(fit_lds3, standardized = TRUE, fit.measures = TRUE)
 
-# 1LCS with retest effect (multiple gamma) --------------------------------
+##########################################################################
+# 1LCS with retest effect (multiple gamma) -------------------------------
+##########################################################################
 
 # We fit a 1LCS with an observed retest covariate but now with multiple gamma
 # coefficients for three age groups: (6, 10), (11, 15), (16,20).
