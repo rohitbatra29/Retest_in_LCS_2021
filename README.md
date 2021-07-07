@@ -1,5 +1,4 @@
 # Modeling Retest Effects in Developmental Processes Using Latent Change Score Models
-(this page is a work in progress)
 
 Preprint link: https://psyarxiv.com/gu78q
 
