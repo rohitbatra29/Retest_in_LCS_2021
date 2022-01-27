@@ -1,5 +1,9 @@
 # Modeling Retest Effects in Developmental Processes Using Latent Change Score Models
 
+Rohit Batra, Silvia A. Bunge & Emilio Ferrer (2021) Modeling Retest Effects in Developmental Processes Using Latent Change Score Models, Structural Equation Modeling: A Multidisciplinary Journal, DOI: 10.1080/10705511.2021.1946807
+
+Link: https://doi.org/10.1080/10705511.2021.1946807
+
 Preprint link: https://psyarxiv.com/gu78q
 
 This page is dedicated to the code used for the statistical analysis in the paper. Following are the names of the files for the three different specifications proposed in the paper:
